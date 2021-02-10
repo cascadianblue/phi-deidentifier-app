@@ -16,11 +16,11 @@ COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy env_vars file and shell script to container
 WORKDIR /usr/share/nginx/html
-COPY env.sh .
+COPY make-env.sh .
 COPY env_vars .
 
 RUN apk add --no-cache bash
-RUN chmod +x env.sh
+RUN chmod +x make-env.sh
 
 EXPOSE 80
-CMD ["/bin/bash", "-c", "/usr/share/nginx/html/env.sh && nginx -g \"daemon off;\""]
+CMD ["/bin/bash", "-c", "/usr/share/nginx/html/make-env.sh && nginx -g \"daemon off;\""]
